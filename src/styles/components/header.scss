@@ -1,0 +1,62 @@
+@use '../functions' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: px-to-rem(20) px-to-rem(15);
+
+  @include media-min($breakpoint-lg) {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.14);
+  }
+
+  @include media-max($breakpoint-lg - 1) {
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    background-color: $color-bg-tablet;
+  }
+
+  @include media-max($breakpoint-md - 1) {
+    background-color: $color-bg-mobile;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: px-to-rem(15);
+    list-style: none;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &_triangle {
+      height: 25px;
+      width: 20px;
+      background: transparent url("../../assets/icons/TriangleIcon.svg") no-repeat center /
+        cover;
+      opacity: .13;
+      transition: opacity 0.3s ease;
+    }
+
+    &_circle {
+      @include figure(px-to-rem(23), rgba($color-black, 1), 50%);
+      opacity: .13
+    }
+
+    &_square {
+      @include figure(px-to-rem(21), rgba($color-black, 1), 4px);
+      opacity: .13
+    }
+
+    &_circle:hover,
+    &_square:hover,
+    &_triangle:hover {
+      opacity: .5;
+    }
+  }
+}

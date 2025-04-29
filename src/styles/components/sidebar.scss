@@ -1,0 +1,85 @@
+@use '../functions' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.sidebar {
+  width: 310px;
+  transition: transform 0.3s ease;
+  padding: px-to-rem(70) px-to-rem(15) px-to-rem(20);
+  overflow: hidden;
+
+  @include media-max($breakpoint-lg - 1) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    transform: translateX(-200%);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    background-color: $color-bg;
+  }
+
+  @include media-min($breakpoint-lg) {
+    padding-top: px-to-rem(20);
+    border-right: 2px solid rgba($color-black, 0.14);
+  }
+
+  @include media-max($breakpoint-sm - 1) {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &--open {
+    transform: translateX(0);
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: px-to-rem(26);
+    height: 100%;
+
+    @include media-max($breakpoint-lg - 1) {
+      overflow-y: auto;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    gap: px-to-rem(10);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: px-to-rem(22);
+    padding: px-to-rem(10) px-to-rem(13);
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba($color-bg-secondary, .15);
+    }
+  }
+
+  &__icon {
+    @include figure(31px, rgba($color-black, .14), 50%)
+  }
+
+  &__text {
+    font-size: px-to-rem(14);
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}

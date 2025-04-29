@@ -1,0 +1,36 @@
+@mixin media-min($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin media-max($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin media-between($min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin hide-incomplete-row($columns) {
+  @for $i from 1 through ($columns - 1) {
+    $a: $columns;
+    $b: $i;
+    $last: $columns - $i;
+
+    &:nth-child(#{$a}n + #{$b}):nth-last-child(-n + #{$last}) {
+      display: none;
+    }
+  }
+}
+
+@mixin figure($size, $bg, $radius) {
+  min-width: $size;
+  min-height: $size;
+  border-radius: $radius;
+  background-color: $bg;
+}

@@ -1,0 +1,61 @@
+@use '../functions' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.card {
+  background-color: rgba($color-black, .1);
+  color: rgba($color-black, .7);
+  border-radius: 10px;
+  padding: px-to-rem(15) px-to-rem(12);
+  height: 128px;
+  transition: background-color .3s ease-out, color .3s ease-out;
+
+  @include media-min($breakpoint-xl) {
+    @include hide-incomplete-row(5);
+  }
+
+  @include media-between($breakpoint-lg, $breakpoint-xl - 1) {
+    @include hide-incomplete-row(4);
+  }
+
+  @include media-between($breakpoint-md, $breakpoint-lg - 1) {
+    @include hide-incomplete-row(3);
+  }
+
+  @include media-max($breakpoint-md - 1) {
+    @include hide-incomplete-row(2);
+    height: 115px;
+  }
+
+  &:hover {
+    background-color: rgba($color-bg-secondary, 0.15);
+    color: $color-black;
+
+    @include media-max($breakpoint-lg - 1) {
+      background-color: $color-bg-tablet;
+    }
+
+    @include media-max($breakpoint-md - 1) {
+      background-color: $color-bg-mobile;
+    }
+  }
+
+  &__text {
+    font-size: px-to-rem(14);
+    line-height: px-to-rem(17);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    line-clamp: 6;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+
+    @include media-max($breakpoint-md - 1) {
+      line-clamp: 5;
+      -webkit-line-clamp: 5;
+    }
+  }
+}

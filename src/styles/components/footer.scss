@@ -1,0 +1,32 @@
+@use '../functions' as *;
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.footer {
+  flex: 0 0 auto;
+  padding: px-to-rem(12) px-to-rem(15);
+
+  @include media-min($breakpoint-lg) {
+    border-top: 2px solid rgba(0, 0, 0, 0.14);
+  }
+
+  @include media-max($breakpoint-lg - 1) {
+    background-color: $color-bg-tablet;
+  }
+
+  @include media-max($breakpoint-md - 1) {
+    background-color: $color-bg-mobile;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+  }
+}
